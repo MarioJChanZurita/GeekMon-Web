@@ -1,0 +1,26 @@
+:host {
+    background-image: url("../../../../assets/home_background.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* background-attachment: scroll;
+    background-size: cover; */
+}
+
+.poke-text {
+    font-family: PokemonFont;
+    font-weight: bold;
+    color: white;
+    font-size: 5rem;
+}
+
+button {
+    background-color: darkviolet;
+    height: auto;
+}
+
+.intro {
+    width: 50rem;
+    margin: 10rem;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,26 @@
+<!-- INTRO -->
+<section class="intro">
+  <p class="poke-text">JOIN THE POKEMON AND DIGIMON COMMUNITY</p>
+  <button routerLink="/home/sign-in">
+    <span class="poke-text">SIGN IN</span>
+  </button>
+</section>
+
+<!-- CAROUSEL -->
+<div>
+  <h1>Featured Pokemons</h1>
+</div>
+<app-carousel #carousel [items]="pokemons" *ngIf="pokemons"></app-carousel>
+
+<div>
+  <h1>Featured Digimons</h1>
+</div>
+<app-carousel #carousel [items]="digimons" *ngIf="digimons"></app-carousel>
+
+<!-- LOADING -->
+<!-- <div
+  *ngIf="isLoading; else carousel"
+  class="d-flex h-100 align-items-center justify-content-center"
+>
+  <mat-spinner diameter="50"></mat-spinner>
+</div> -->

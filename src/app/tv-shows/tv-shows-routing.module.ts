@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TvShowsComponent } from './components/tv-shows/tv-shows.component';
+import { TvShowsComponent } from './pages/tv-shows/tv-shows.component';
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: 'home',
+        redirectTo: '',
       },
     ],
   },

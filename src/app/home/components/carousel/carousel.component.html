@@ -1,0 +1,37 @@
+<div class="container" #container>
+  <div
+    class="left"
+    *ngIf="totalPages > 1"
+    (click)="currentPage != 1 && changePage(-1)"
+    [ngClass]="{ disabled: currentPage === 1 }"
+  ></div>
+
+  <div class="cards" [ngClass]="{ 'w-100': totalPages === 1 }">
+    <div
+      class="overflow"
+      [ngStyle]="{ width: overflowWidth, left: pagePosition }"
+    >
+      <ng-container *ngFor="let i of arr; let index = index">
+        <div
+          class="card shadow p-3 mb-5 bg-body rounded"
+          [ngStyle]="{ width: cardWidth }"
+        >
+          <img
+            src="{{ i.image }}"
+            class="card-img-top"
+            width="200"
+            height="200"
+          />
+          <h2 class="card-body">{{ i.name }}</h2>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div
+    class="right"
+    *ngIf="totalPages > 1"
+    (click)="currentPage != totalPages && changePage(+1)"
+    [ngClass]="{ disabled: currentPage === totalPages }"
+  ></div>
+</div>

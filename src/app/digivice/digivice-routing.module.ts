@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DigiviceComponent } from './components/digivice/digivice.component';
+import { DigiviceComponent } from './pages/digivice/digivice.component';
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: 'home',
+        redirectTo: '',
       },
     ],
   },

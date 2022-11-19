@@ -1,0 +1,90 @@
+<div class="row justify-content-center align-items-center h-100">
+  <div class="col-12 col-lg-6">
+    <div class="card p-4 shadow p-3 mb-5 bg-body rounded m-auto">
+      <p class="fs-4 fw-semibold m-auto mt-4 mb-4">
+        Login to an existing
+        <span class="text-primary">DAM</span>
+        account
+      </p>
+      <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div class="mb-3">
+          <label for="emailAddress" class="form-label fw-semibold"
+            >Root email address</label
+          >
+          <p class="text-secondary text-opacity-75">
+            Account owner with administrative functions.
+          </p>
+          <input
+            type="text"
+            class="form-control"
+            id="emailAddress"
+            required
+            formControlName="emailAddress"
+            name="emailAddress"
+            [ngClass]="{
+              'is-invalid': isSubmitted && formInput['emailAddress'].errors
+            }"
+          />
+          <div
+            *ngIf="isSubmitted && formInput['emailAddress'].errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="formInput['emailAddress'].errors['required']">
+              Email is required
+            </div>
+            <div *ngIf="formInput['emailAddress'].errors['email']">
+              Email is invalid
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label fw-semibold">Password</label>
+          <p class="text-secondary text-opacity-75">
+            Enter the password registered for this account.
+          </p>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            required
+            formControlName="password"
+            name="password"
+            [ngClass]="{
+              'is-invalid': isSubmitted && formInput['password'].errors
+            }"
+          />
+          <div
+            *ngIf="isSubmitted && formInput['password'].errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="formInput['password'].errors['required']">
+              Password is required
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn btn-primary w-100"
+          type="submit"
+          *ngIf="!(isLoading && isSubmitted); else btnLoading"
+        >
+          Log in
+        </button>
+        <ng-template #btnLoading>
+          <button class="btn btn-primary w-100" disabled>
+            <span
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+          </button>
+        </ng-template>
+      </form>
+      <p class="text-end mt-3">
+        New to
+        <span class="text-primary">DAM</span>
+        ? Signup
+        <a class="text-primary" routerLink="/auth/signup" href="#">here</a>
+      </p>
+    </div>
+  </div>
+</div>

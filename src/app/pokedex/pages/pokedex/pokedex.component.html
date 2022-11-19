@@ -1,0 +1,33 @@
+<ng-container *ngIf="pokemons.length; else noPokemons">
+    <div class="container d-flex flex-wrap">
+        <ng-container *ngFor="let pokemon of pokemons" class="container d-flex flex-row">
+
+            <a [routerLink]="['/pokedex/details', pokemon.url]" style="text-decoration: none; color: black;">
+                <div class="card m-3" style="width: 18rem; height: auto;">
+                    <img src="{{ pokemon.image }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <span>N°{{ pokemon.id }}</span>
+                        <p class="card-text">{{ pokemon.name }}</p>
+                        <div class="row">
+                            <span class="col bg-warning rounded-2 mx-2 bg-opacity-25">{{ pokemon.type }}</span>
+                            <span class="col bg-danger rounded-2 mx-2 bg-opacity-25">{{ pokemon.ability }}</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        
+        </ng-container>
+    </div>
+    <div>
+        <button [disabled]="!nextPage">
+            <span (click)="getPokemons(nextPage)">Next</span>
+        </button>
+        <button [disabled]="!previousPage">
+            <span (click)="getPokemons(previousPage)">Previous</span>
+        </button>
+    </div>
+</ng-container>
+
+<ng-template #noPokemons>
+  <p>There are no pokemons to show</p>
+</ng-template>

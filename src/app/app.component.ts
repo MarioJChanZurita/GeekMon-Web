@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
@@ -10,19 +10,16 @@ export class AppComponent {
   title = 'Home';
 
   screens = [
-    { route: '/home', display: 'Home' },
-    { route: '/pokedex', display: 'Pokedex' },
-    { route: '/digivice', display: 'Digivice' },
-    { route: '/cards', display: 'Cards' },
-    { route: '/tvShows', display: 'TV Shows' },
-    { route: '/forum', display: 'Forum' },
+    { route: '/home', display: 'Home', icon: 'home.png' },
+    { route: '/pokedex', display: 'Pokedex', icon: 'pokemon.png' },
+    { route: '/digivice', display: 'Digivice', icon: 'digimon.png' },
+    { route: '/cards', display: 'Cards', icon: 'cards.png' },
+    { route: '/tvShows', display: 'TV Shows', icon: 'tv-show.png' },
+    { route: '/forum', display: 'Forum', icon: 'forum.png' },
   ];
 
-  toggleSidenav(sidenav: MatSidenav) {
+  navigateToScreen(screenName: string, sidenav: MatSidenav) {
     sidenav.toggle();
-  }
-
-  navigateToScreen(screenName: string) {
     this.title = screenName;
   }
 }

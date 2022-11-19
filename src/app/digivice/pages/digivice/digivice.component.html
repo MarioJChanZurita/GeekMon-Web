@@ -1,0 +1,32 @@
+
+<ng-container *ngIf="digimons.length; else noDigimons">
+    <div class="container d-flex flex-wrap">
+        <ng-container *ngFor="let digimon of digimons" class="container d-flex flex-row">
+
+            <div class="card m-3" style="width: 18rem; height: auto;">
+                <img src="{{ digimon.image }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <span>N°{{ digimon.id }}</span>
+                    <p class="card-text">{{ digimon.name }}</p>
+                    <!-- <div class="row">
+                        <span class="col bg-warning rounded-2 mx-2 bg-opacity-25">{{ digimon.type }}</span>
+                        <span class="col bg-danger rounded-2 mx-2 bg-opacity-25">{{ digimon.ability }}</span>
+                    </div> -->
+                </div>
+            </div>
+        
+        </ng-container>
+    </div>
+    <div>
+        <button [disabled]="!nextPage">
+            <span (click)="changePage(nextPage)">Next</span>
+        </button>
+        <button [disabled]="!previousPage">
+            <span (click)="changePage(previousPage)">Previous</span>
+        </button>
+    </div>
+</ng-container>
+
+<ng-template #noDigimons>
+  <p>There are no Digimons to show</p>
+</ng-template>

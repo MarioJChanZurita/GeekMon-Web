@@ -1,0 +1,159 @@
+<div class="row justify-content-center align-items-center h-100">
+  <div class="col-12 col-lg-6">
+    <div class="card p-4 shadow p-3 mb-5 bg-body rounded m-auto">
+      <p class="fs-4 fw-semibold m-auto mt-4 mb-4">
+        Start using
+        <span class="text-primary">DAM</span>
+        by creating an account
+      </p>
+      <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div class="mb-3">
+          <label for="emailAddress" class="form-label fw-semibold"
+            >Root email address</label
+          >
+          <p class="text-secondary text-opacity-75">
+            Account owner with administrative functions.
+          </p>
+          <input
+            type="text"
+            class="form-control"
+            id="emailAddress"
+            required
+            formControlName="emailAddress"
+            name="emailAddress"
+            [ngClass]="{
+              'is-invalid': isSubmitted && formInput['emailAddress'].errors
+            }"
+          />
+          <div
+            *ngIf="isSubmitted && formInput['emailAddress'].errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="formInput['emailAddress'].errors['required']">
+              Email is required
+            </div>
+            <div *ngIf="formInput['emailAddress'].errors['email']">
+              Email is invalid
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="name" class="form-label fw-semibold">
+            <span class="text-primary">DAM</span>
+            account name
+          </label>
+          <p class="text-secondary text-opacity-75">
+            Enter your organization name or choose a name for your account.
+          </p>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            required
+            formControlName="name"
+            name="name"
+            [ngClass]="{
+              'is-invalid': isSubmitted && formInput['name'].errors
+            }"
+          />
+          <div
+            *ngIf="isSubmitted && formInput['name'].errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="formInput['name'].errors['required']">
+              Name is required
+            </div>
+            <div *ngIf="formInput['name'].errors['minlength']">
+              Name must be at least 6 characters
+            </div>
+            <div *ngIf="formInput['name'].errors['maxlength']">
+              Name must not exceed 20 characters
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label fw-semibold">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            required
+            formControlName="password"
+            name="password"
+            [ngClass]="{
+              'is-invalid': isSubmitted && formInput['password'].errors
+            }"
+          />
+          <div
+            *ngIf="isSubmitted && formInput['password'].errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="formInput['password'].errors['required']">
+              Password is required
+            </div>
+            <div *ngIf="formInput['password'].errors['minlength']">
+              Password must be at least 8 characters
+            </div>
+            <div *ngIf="formInput['password'].errors['maxlength']">
+              Password must not exceed 20 characters
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label fw-semibold"
+            >Confirm password</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            required
+            formControlName="confirmPassword"
+            name="confirmPassword"
+            [ngClass]="{
+              'is-invalid': isSubmitted && formInput['confirmPassword'].errors
+            }"
+          />
+          <div
+            *ngIf="isSubmitted && formInput['confirmPassword'].errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="formInput['confirmPassword'].errors['required']">
+              Confirm Password is required
+            </div>
+            <div *ngIf="formInput['confirmPassword'].errors['matching']">
+              Confirm Password does not match
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn btn-primary w-100"
+          type="submit"
+          *ngIf="!(isLoading && isSubmitted); else btnLoading"
+        >
+          Sign up
+        </button>
+        <ng-template #btnLoading>
+          <button class="btn btn-primary w-100" disabled>
+            <span
+              class="spinner-border spinner-border-sm"
+              role="status"
+              aria-hidden="true"
+            ></span>
+          </button>
+        </ng-template>
+      </form>
+      <p class="text-end mt-3">
+        Already have a
+        <span class="text-primary">DAM</span>
+        account?
+        <a class="text-primary" routerLink="/auth/login" href="#">Login</a>
+      </p>
+    </div>
+    <ng-template #loading>
+      <div class="w-100 mt-4 d-flex justify-content-center" *ngIf="isLoading">
+        <mat-spinner [diameter]="40" color="accent"></mat-spinner>
+      </div>
+    </ng-template>
+  </div>
+</div>

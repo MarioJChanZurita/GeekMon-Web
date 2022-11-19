@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  pokemonApi: 'https://pokeapi.co/api/v2/',
+  digimonApi: 'https://www.digi-api.com/api/v1/digimon',
+  moviesApi: 'https://imdb-api.com/api',
 };
 
 /*
