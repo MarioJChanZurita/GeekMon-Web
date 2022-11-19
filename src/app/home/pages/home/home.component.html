@@ -11,11 +11,29 @@
   <h1>Featured Pokemons</h1>
 </div>
 <app-carousel #carousel [items]="pokemons" *ngIf="pokemons"></app-carousel>
+<button>See more pokemons</button>
 
 <div>
   <h1>Featured Digimons</h1>
 </div>
 <app-carousel #carousel [items]="digimons" *ngIf="digimons"></app-carousel>
+
+<section class="d-flex flex-row">
+  <img
+    class="m-4"
+    src="../../../../assets/main_shows.png"
+    width="500"
+    height="300"
+  />
+  <div class="d-flex flex-row">
+    <p class="poke-text" style="color: darkviolet">
+      FIND MORE MEDIA: TV SHOWS, MOVIES, ETC.
+    </p>
+    <button>
+      <span class="fs-2" style="color: white">TV Shows</span>
+    </button>
+  </div>
+</section>
 
 <!-- LOADING -->
 <!-- <div

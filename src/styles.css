@@ -1,6 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css"; 
-
 @font-face {
     font-family: PokemonFont;
     src: url(./assets/pokemon_font.ttf) format('truetype');

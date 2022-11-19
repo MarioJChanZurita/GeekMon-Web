@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Hi {{ data.username }}</h1>
+
+<div mat-dialog-content>
+  <div class="mb-3">
+    <label for="subjectForm" class="form-label">Subject</label>
+    <input
+      type="email"
+      class="form-control"
+      id="subjectForm"
+      [(ngModel)]="data.subject"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="msgForm" class="form-label">Message</label>
+    <textarea
+      class="form-control"
+      id="msgForm"
+      rows="3"
+      placeholder="Message..."
+    ></textarea>
+  </div>
+</div>
+
+<div mat-dialog-actions class="d-flex justify-content-evenly">
+  <button mat-button class="btn btn-danger fs-5" (click)="onNoClick()">
+    Cancel
+  </button>
+  <button
+    mat-button
+    class="btn btn-warning fs-5"
+    [mat-dialog-close]="data.message"
+    cdkFocusInitial
+  >
+    Post
+  </button>
+</div>
