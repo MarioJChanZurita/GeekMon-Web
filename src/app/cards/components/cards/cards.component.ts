@@ -27,14 +27,5 @@ export class CardsComponent implements OnInit {
 
 
 
-  getCards(noPage: string) {
-    this.Pokemons && this.Pokemons.unsubscribe();
-    this.Pokemons = this.sharedService.getCards().subscribe({
-      
-      error: () => {
-        this.pokemons = [];
-        this.isLoading = false;
-      },
-    });
-  }
+
 }
