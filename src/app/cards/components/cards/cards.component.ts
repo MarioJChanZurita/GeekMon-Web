@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-cards',
@@ -6,10 +9,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit {
-
-  constructor() { }
+  pokemons : any[] = [];
+  constructor(private sharedService: SharedService,private http:HttpClient) {}
 
   ngOnInit(): void {
+    this.getC().subscribe(resp => {
+      this.pokemons.push(resp);
+      
+      
+    },)
   }
 
+  
+  getC(){
+    return this.http.get(this.sharedService.cardsApi)
+  }
+
+
+
+  getCards(noPage: string) {
+    this.Pokemons && this.Pokemons.unsubscribe();
+    this.Pokemons = this.sharedService.getCards().subscribe({
+      
+      error: () => {
+        this.pokemons = [];
+        this.isLoading = false;
+      },
+    });
+  }
 }
