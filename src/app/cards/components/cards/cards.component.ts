@@ -22,7 +22,7 @@ export class CardsComponent implements OnInit {
 
   
   getC(){
-    return this.http.get(this.sharedService.cardsApi)
+    return this.http.get(this.sharedService.cardApi)
   }
 
 
