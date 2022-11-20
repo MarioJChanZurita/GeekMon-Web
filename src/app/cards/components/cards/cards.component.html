@@ -1,1 +1,26 @@
-<p>cards works!</p>
+<ng-container *ngIf="pokemons[0].data.length; else noPokemons">
+    <div class="container d-flex flex-wrap">
+        <ng-container *ngFor="let pokemon of pokemons[0].data | slices:0:16; let i = index" class="container d-flex flex-row">
+
+            <a  style="text-decoration: none; color: black;">
+                <div class="card m-3" style="width: 18rem; height: auto;">
+                    <img src="{{ pokemons[0].data[i].images.small }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <span>N°{{ i+1 }}</span>
+                        <p class="card-text">{{ pokemons[0].data[i].name }}</p>
+                        <div class="row">
+                            <span class="col bg-warning rounded-2 mx-2 bg-opacity-25">{{ pokemons[0].data[i].rarity }}</span>
+                            <span class="col bg-danger rounded-2 mx-2 bg-opacity-25">{{ pokemons[0].data[i].cardmarket.prices.avg1 }}</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        
+        </ng-container>
+    </div>
+    
+</ng-container>
+
+<ng-template #noPokemons>
+  <p>There are no pokemons to show</p>
+</ng-template>
