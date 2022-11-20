@@ -1,6 +1,6 @@
 <ng-container *ngIf="pokemons[0].data.length; else noPokemons">
     <div class="container d-flex flex-wrap">
-        <ng-container *ngFor="let pokemon of pokemons[0].data | slices:0:16; let i = index" class="container d-flex flex-row">
+        <ng-container *ngFor="let pokemon of pokemons[0].data | slice:0:16; let i = index" class="container d-flex flex-row">
 
             <a  style="text-decoration: none; color: black;">
                 <div class="card m-3" style="width: 18rem; height: auto;">
