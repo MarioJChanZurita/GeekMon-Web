@@ -29,4 +29,11 @@ export class SharedService {
   getDigimonsByUrl(url: string) {
     return this.http.get<any>(url);
   }
+  
+  getCards(): Observable<any> {
+
+    return this.http.get<any>(
+      `${this.cardsApi}`
+    );
+  }
 }
