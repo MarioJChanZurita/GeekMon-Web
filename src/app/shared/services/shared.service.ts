@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 export class SharedService {
   pokemonApi: string = environment.pokemonApi;
   digimonApi: string = environment.digimonApi;
+  cardApi: string = environment.cardApi;
 
   constructor(private http: HttpClient) {}
 
@@ -33,5 +34,12 @@ export class SharedService {
 
   getDigimonsByUrl(url: string) {
     return this.http.get<any>(url);
+  }
+  
+  getCards(): Observable<any> {
+
+    return this.http.get<any>(
+      `${this.cardApi}`
+    );
   }
 }

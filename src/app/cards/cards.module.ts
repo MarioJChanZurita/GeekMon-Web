@@ -5,9 +5,11 @@ import { CardsRoutingModule } from './cards-routing.module';
 import { CardsComponent } from './components/cards/cards.component';
 
 
+
 @NgModule({
   declarations: [
-    CardsComponent
+    CardsComponent,
+
   ],
   imports: [
     CommonModule,
@@ -15,3 +17,4 @@ import { CardsComponent } from './components/cards/cards.component';
   ]
 })
 export class CardsModule { }
+

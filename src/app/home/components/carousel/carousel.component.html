@@ -1,6 +1,5 @@
 <div class="container" #container>
   <a
-    href=""
     class="left"
     *ngIf="totalPages > 1"
     (click)="currentPage != 1 && changePage(-1)"
@@ -30,7 +29,6 @@
   </div>
 
   <a
-    href=""
     class="right"
     *ngIf="totalPages > 1"
     (click)="currentPage != totalPages && changePage(+1)"

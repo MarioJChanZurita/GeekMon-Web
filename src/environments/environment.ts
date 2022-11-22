@@ -8,6 +8,7 @@ export const environment = {
   digimonApi: 'https://www.digi-api.com/api/v1/digimon',
   moviesApi: 'https://imdb-api.com/api',
   geekMonApi: '', // project api
+  cardApi: 'https://api.pokemontcg.io/v2/cards?q=name:gardevoir',
 };
 
 /*
