@@ -1,0 +1,17 @@
+<app-cards-list
+  *ngIf="series && series.length > 0; else loading"
+  [items]="series"
+></app-cards-list>
+
+<ng-template #loading>
+  <div
+    class="w-100 mt-4 d-flex justify-content-center"
+    *ngIf="isLoading; else noItems"
+  >
+    <mat-spinner [diameter]="40" color="accent"></mat-spinner>
+  </div>
+</ng-template>
+
+<ng-template #noItems>
+  <p>There are no items to show</p>
+</ng-template>

@@ -1,18 +1,17 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
-  FormBuilder,
   FormControl,
   FormGroup,
-  ValidatorFn,
+  FormBuilder,
   Validators,
+  AbstractControl,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { catchError, of, throwError } from 'rxjs';
-// import { AppCurrentService } from 'src/app.current.service';
+import { catchError, throwError } from 'rxjs';
 import { Md5 } from 'ts-md5';
-// import { AuthenticationService } from '../../services/authentication.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -20,51 +19,35 @@ import { Md5 } from 'ts-md5';
   styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent implements OnInit {
-  // Form fields
-  public emailAddress: FormControl;
-  public name: FormControl;
+  public username: FormControl;
   public password: FormControl;
-  public confirmPassword: FormControl;
-
   public hashedPassword: any;
   public isSubmitted: boolean;
   public isLoading: boolean;
 
   form = new FormGroup({
-    emailAddress: new FormControl(''),
-    name: new FormControl(''),
+    username: new FormControl(''),
     password: new FormControl(''),
-    confirmPassword: new FormControl(''),
   });
 
   constructor(
-    // private authService: AuthenticationService,
-    // private appCurrent: AppCurrentService,
+    private authService: AuthService,
     private formBuilder: FormBuilder,
+    private router: Router,
     private toastr: ToastrService
   ) {
-    this.emailAddress = new FormControl();
-    this.name = new FormControl();
+    this.username = new FormControl();
     this.password = new FormControl();
-    this.confirmPassword = new FormControl();
-
+    this.hashedPassword = '';
     this.isSubmitted = false;
     this.isLoading = false;
-    this.hashedPassword = '';
   }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group(
-      {
-        emailAddress: ['', [Validators.required, Validators.email]],
-        name: ['', [Validators.minLength(8), Validators.maxLength(20)]],
-        password: ['', [Validators.minLength(8), Validators.maxLength(20)]],
-        confirmPassword: ['', [Validators.required]],
-      },
-      {
-        validators: [this.validatePassword('password', 'confirmPassword')],
-      }
-    );
+    this.form = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
   }
 
   get formInput(): { [key: string]: AbstractControl } {
@@ -76,49 +59,27 @@ export class SignInComponent implements OnInit {
     if (this.form.invalid) return;
     this.isLoading = true;
     const md5 = new Md5();
-    this.hashedPassword = md5
-      .appendStr(this.formInput['password'].value.trim())
-      .end();
+    this.hashedPassword = md5.appendStr(this.formInput['password'].value).end();
 
-    // this.appCurrent
-    //   .register({
-    //     email: this.formInput['emailAddress'].value,
-    //     name: this.formInput['name'].value,
-    //     password: this.hashedPassword,
-    //   })
-    //   .pipe(
-    //     catchError((err: HttpErrorResponse) => {
-    //       this.onReset();
-    //       this.toastr.error(err.message, 'Error');
-    //       return throwError(() => err);
-    //     })
-    //   )
-    //   .subscribe({
-    //     next: () => {
-    //       this.isLoading = false;
-    //       this.appCurrent.redirectToLogin();
-    //     },
-    //   });
+    this.authService
+      .authenticate(this.formInput['username'].value, this.hashedPassword)
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          this.onReset();
+          this.toastr.warning('Authentication failed', 'Error');
+          return throwError(() => err);
+        })
+      )
+      .subscribe({
+        next: (res) => {
+          this.isLoading = false;
+          this.authService.redirectToHome(); // intenta nuevamente -> AuthGuard
+        },
+      });
   }
 
   onReset(): void {
     this.isSubmitted = false;
     this.form.reset();
-  }
-
-  validatePassword(controlName: string, checkControlName: string): ValidatorFn {
-    return (controls: AbstractControl) => {
-      const control = controls.get(controlName);
-      const checkControl = controls.get(checkControlName);
-      if (checkControl?.errors && !checkControl.errors['matching']) {
-        return null;
-      }
-      if (control?.value !== checkControl?.value) {
-        controls.get(checkControlName)?.setErrors({ matching: true });
-        return { matching: true };
-      } else {
-        return null;
-      }
-    };
   }
 }

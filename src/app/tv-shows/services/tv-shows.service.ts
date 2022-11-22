@@ -10,27 +10,15 @@ export class TvShowsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getPokemonMovies() {
-    this.httpClient.get<any>(
-      `${this.moviesApi}/searchmovie/k_4lwb2jzp/pokemon`
+  getMovies(subject: string) {
+    return this.httpClient.get<any>(
+      `${this.moviesApi}/searchmovie/k_4lwb2jzp/${subject}`
     );
   }
 
-  getPokemonSeries() {
-    this.httpClient.get<any>(
-      `${this.moviesApi}/searchseries/k_4lwb2jzp/pokemon`
-    );
-  }
-
-  getDigimonMovies() {
-    this.httpClient.get<any>(
-      `${this.moviesApi}/searchmovie/k_4lwb2jzp/digimon`
-    );
-  }
-
-  getDigimonSeries() {
-    this.httpClient.get<any>(
-      `${this.moviesApi}/searchseries/k_4lwb2jzp/digimon`
+  getSeries(subject: string) {
+    return this.httpClient.get<any>(
+      `${this.moviesApi}/searchseries/k_4lwb2jzp/${subject}`
     );
   }
 }

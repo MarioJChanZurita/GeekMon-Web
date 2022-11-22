@@ -22,7 +22,12 @@ export class SharedService {
     return this.http.get<any>(url);
   }
 
-  getDigimons(pageSize: number) {
+  getDigimons(pageSize: number, name?: string) {
+    if (name) {
+      return this.http.get<any>(
+        `${this.digimonApi}?pageSize=${pageSize}?name=${name}`
+      );
+    }
     return this.http.get<any>(`${this.digimonApi}?pageSize=${pageSize}`);
   }
 

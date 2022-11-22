@@ -1,4 +1,42 @@
+<div class="d-flex flex-column justify-content-center align-items-center">
+  <div class="card d-flex align-items-center bg-transparent border-0">
+    <img
+      src="../../../../assets/pokedex.png"
+      alt=""
+      width="1000px"
+      height="auto"
+      class="mx-auto"
+      style="margin-top: 20rem; margin-bottom: 20rem"
+    />
+    <div class="card-img-overlay">
+      <img
+        src="{{ pokemon.sprites.other['official-artwork'].front_default }}"
+        alt=""
+        class="position-absolute start-0 pokemon-img"
+      />
+    </div>
+  </div>
 
-
-
-<img src="../../../../assets/pokedex.png" alt="">
+  <div class="info bg-info d-flex flex-column shadow-lg p-3 mb-5 rounded">
+    <div class="field d-flex flex-row gap-2">
+      <b>Name: </b>
+      <p>{{ pokemon.name }}</p>
+    </div>
+    <div class="field d-flex flex-row gap-2">
+      <b>Abilities: </b>
+      <p>{{ pokemon.abilities[0].ability.name }}</p>
+    </div>
+    <div class="field d-flex flex-row gap-2">
+      <b>Moves: </b>
+      <p>{{ pokemon.moves[0].move.name }}</p>
+    </div>
+    <div class="field d-flex flex-row gap-2">
+      <b>Type: </b>
+      <p>{{ pokemon.types[0].type.name }}</p>
+    </div>
+    <div class="field d-flex flex-row gap-2">
+      <b>Weight: </b>
+      <p>{{ pokemon.weight }}</p>
+    </div>
+  </div>
+</div>

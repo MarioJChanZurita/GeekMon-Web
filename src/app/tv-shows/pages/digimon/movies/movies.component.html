@@ -1,0 +1,57 @@
+<!-- <app-search
+  placeholder="Search a serie..."
+  (onDebounce)="quickSearch = $event"
+  (onSubmit)="quickSearch = $event"
+></app-search>
+
+<ng-container *ngIf="movies.length; else noMovies">
+  <div class="container d-flex flex-wrap">
+    <ng-container
+      *ngFor="let movie of movies"
+      class="container d-flex flex-row"
+    >
+      <div class="card m-3" style="width: 18rem; height: auto">
+        <img src="{{ movie.image }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <p class="card-text">{{ movie.title }}</p>
+          <div class="row">
+            <span class="col rounded-2 mx-2 bg-opacity-25">{{
+              movie.description
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <mat-paginator
+    *ngIf="movies.length > limitPerPage"
+    [length]="totalItems"
+    [pageSize]="limitPerPage"
+    [pageIndex]="pageIndex"
+    (page)="pageIndex = $event.pageIndex"
+  >
+  </mat-paginator>
+</ng-container>
+
+<ng-template #noMovies>
+  <p>There are no movies to show</p>
+</ng-template> -->
+
+<app-cards-list
+  *ngIf="movies && movies.length > 0; else loading"
+  [items]="movies"
+></app-cards-list>
+
+<ng-template #loading>
+  <div
+    class="w-100 mt-4 d-flex justify-content-center"
+    *ngIf="isLoading; else noItems"
+  >
+    <mat-spinner [diameter]="40" color="accent"></mat-spinner>
+  </div>
+</ng-template>
+
+<ng-template #noItems>
+  <p>There are no items to show</p>
+</ng-template>

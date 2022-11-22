@@ -7,6 +7,7 @@ export const environment = {
   pokemonApi: 'https://pokeapi.co/api/v2/',
   digimonApi: 'https://www.digi-api.com/api/v1/digimon',
   moviesApi: 'https://imdb-api.com/api',
+  geekMonApi: '', // project api
 };
 
 /*

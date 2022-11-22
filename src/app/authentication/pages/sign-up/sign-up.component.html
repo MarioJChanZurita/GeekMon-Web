@@ -1,47 +1,48 @@
-<div class="row justify-content-center align-items-center h-100">
+<div
+  class="row justify-content-center align-items-center h-100"
+  style="margin-top: 20rem; margin-bottom: 20rem"
+>
   <div class="col-12 col-lg-6">
     <div class="card p-4 shadow p-3 mb-5 bg-body rounded m-auto">
       <p class="fs-4 fw-semibold m-auto mt-4 mb-4">
-        Login to an existing
-        <span class="text-primary">DAM</span>
-        account
+        Start using
+        <span class="text-warning">GeekMon</span>
+        by creating an account
       </p>
       <form (ngSubmit)="onSubmit()" [formGroup]="form">
         <div class="mb-3">
-          <label for="emailAddress" class="form-label fw-semibold"
-            >Root email address</label
-          >
-          <p class="text-secondary text-opacity-75">
-            Account owner with administrative functions.
-          </p>
+          <label for="username" class="form-label fw-semibold">
+            <span class="text-primary">GeekMon</span>
+            username
+          </label>
           <input
             type="text"
             class="form-control"
-            id="emailAddress"
+            id="username"
             required
-            formControlName="emailAddress"
-            name="emailAddress"
+            formControlName="username"
+            name="username"
             [ngClass]="{
-              'is-invalid': isSubmitted && formInput['emailAddress'].errors
+              'is-invalid': isSubmitted && formInput['username'].errors
             }"
           />
           <div
-            *ngIf="isSubmitted && formInput['emailAddress'].errors"
+            *ngIf="isSubmitted && formInput['username'].errors"
             class="invalid-feedback"
           >
-            <div *ngIf="formInput['emailAddress'].errors['required']">
-              Email is required
+            <div *ngIf="formInput['username'].errors['required']">
+              Username is required
             </div>
-            <div *ngIf="formInput['emailAddress'].errors['email']">
-              Email is invalid
+            <div *ngIf="formInput['username'].errors['minlength']">
+              Username must be at least 6 characters
+            </div>
+            <div *ngIf="formInput['username'].errors['maxlength']">
+              Username must not exceed 20 characters
             </div>
           </div>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label fw-semibold">Password</label>
-          <p class="text-secondary text-opacity-75">
-            Enter the password registered for this account.
-          </p>
           <input
             type="password"
             class="form-control"
@@ -60,6 +61,39 @@
             <div *ngIf="formInput['password'].errors['required']">
               Password is required
             </div>
+            <div *ngIf="formInput['password'].errors['minlength']">
+              Password must be at least 8 characters
+            </div>
+            <div *ngIf="formInput['password'].errors['maxlength']">
+              Password must not exceed 20 characters
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label fw-semibold"
+            >Confirm password</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            required
+            formControlName="confirmPassword"
+            name="confirmPassword"
+            [ngClass]="{
+              'is-invalid': isSubmitted && formInput['confirmPassword'].errors
+            }"
+          />
+          <div
+            *ngIf="isSubmitted && formInput['confirmPassword'].errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="formInput['confirmPassword'].errors['required']">
+              Confirm Password is required
+            </div>
+            <div *ngIf="formInput['confirmPassword'].errors['matching']">
+              Confirm Password does not match
+            </div>
           </div>
         </div>
         <button
@@ -67,7 +101,7 @@
           type="submit"
           *ngIf="!(isLoading && isSubmitted); else btnLoading"
         >
-          Log in
+          Sign up
         </button>
         <ng-template #btnLoading>
           <button class="btn btn-primary w-100" disabled>
@@ -80,11 +114,16 @@
         </ng-template>
       </form>
       <p class="text-end mt-3">
-        New to
-        <span class="text-primary">DAM</span>
-        ? Signup
-        <a class="text-primary" routerLink="/auth/signup" href="#">here</a>
+        Already have a
+        <span class="text-primary">GeekMon</span>
+        account?
+        <a class="text-primary" routerLink="/auth/login" href="#">Login</a>
       </p>
     </div>
+    <ng-template #loading>
+      <div class="w-100 mt-4 d-flex justify-content-center" *ngIf="isLoading">
+        <mat-spinner [diameter]="40" color="accent"></mat-spinner>
+      </div>
+    </ng-template>
   </div>
 </div>

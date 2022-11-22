@@ -24,3 +24,51 @@ button {
     display: flex;
     flex-direction: column;
 }
+
+.tv-shows {
+    margin: 7rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.content {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background-color: blueviolet;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    border-radius: 4px;
+}
+
+.text {
+    font-size: 1rem;
+    color: white;
+}
+
+.see-more {
+    margin: 1rem;
+    justify-content: end;
+}
+
+
+.spacer {
+    height: 50%;
+    width: 100%;
+}
+
+.pokemon-carousel {
+    margin-top: 40%;
+}
+
+.subtitles {
+    font-size: 3rem;
+}

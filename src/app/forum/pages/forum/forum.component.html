@@ -9,36 +9,39 @@
   class="card mx-auto my-5 shadow-lg p-3 mb-5 bg-body rounded"
   style="width: 125rem"
 >
-  <div class="card-body">
-    <div class="message">
-      <h2>Username</h2>
-      <div>
-        <p>Message sent</p>
-      </div>
+  <ng-container *ngIf="posts.length; else noPosts">
+    <div class="container d-flex flex-column">
+      <ng-container
+        *ngFor="let post of posts | search: quickSearch:['sibject']"
+        class="container d-flex flex-row"
+      >
+        <div class="card-body">
+          <div class="message">
+            <div class="d-flex flex-row">
+              <mat-icon>person</mat-icon>
+              <h2>{{ post.username }}</h2>
+            </div>
+            <div>
+              <h3>{{ post.subject }}</h3>
+              <p>{{ post.message }}</p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </div>
+  </ng-container>
 
-    <div class="message">
-      <h2>Username</h2>
-      <div>
-        <p>Message sent</p>
-      </div>
-    </div>
+  <ng-template #noPosts>
+    <p>No post to show</p>
+  </ng-template>
 
-    <div class="message">
-      <h2>Username</h2>
-      <div>
-        <p>Message sent</p>
-      </div>
-    </div>
-  </div>
+  <section class="d-flex justify-content-around">
+    <button
+      mat-raised-button
+      (click)="openDialog()"
+      class="btn btn-primary end-0 m-4 fs-5 px-5"
+    >
+      Reply
+    </button>
+  </section>
 </div>
-
-<section class="d-flex justify-content-around">
-  <button
-    mat-raised-button
-    (click)="openDialog()"
-    class="btn btn-primary end-0 m-4 fs-5 px-5"
-  >
-    Reply
-  </button>
-</section>

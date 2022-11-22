@@ -1,0 +1,43 @@
+<app-search
+  placeholder="Search a serie..."
+  (onDebounce)="quickSearch = $event"
+  (onSubmit)="quickSearch = $event"
+></app-search>
+
+<ng-container *ngIf="series.length; else noSeries">
+  <div class="container d-flex flex-wrap">
+    <ng-container
+      *ngFor="
+        let serie of series
+          | search: quickSearch:['title']
+          | paginator: pageIndex:limitPerPage
+      "
+      class="container d-flex flex-row"
+    >
+      <div class="card m-3" style="width: 18rem; height: auto">
+        <img src="{{ serie.image }}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <p class="card-text">{{ serie.title }}</p>
+          <div class="row">
+            <span class="col rounded-2 mx-2 bg-opacity-25">{{
+              serie.description
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <mat-paginator
+    *ngIf="series.length > limitPerPage"
+    [length]="totalItems"
+    [pageSize]="limitPerPage"
+    [pageIndex]="pageIndex"
+    (page)="pageIndex = $event.pageIndex"
+  >
+  </mat-paginator>
+</ng-container>
+
+<ng-template #noSeries>
+  <p>There are no movies to show</p>
+</ng-template>

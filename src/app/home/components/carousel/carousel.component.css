@@ -61,3 +61,6 @@
     right: 0;
   }
   
+  .img-fluid {
+    object-fit: fill !important;
+  }

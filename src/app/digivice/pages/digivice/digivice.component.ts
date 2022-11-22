@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -12,9 +13,9 @@ export class DigiviceComponent implements OnInit {
   digimons: any[] = [];
   isLoading: boolean = true;
 
+  // Pagination
   noPages: number = 0;
-  limitPerPage: number = 24;
-
+  limitPerPage: number = 10;
   nextPage: string = '';
   previousPage: string = '';
 

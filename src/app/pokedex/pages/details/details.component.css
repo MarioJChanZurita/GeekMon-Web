@@ -1,0 +1,19 @@
+p b {
+    margin: 1rem;
+}
+
+.info {
+    width: 50rem;
+    border-radius: 5px;
+    padding: 2rem;
+    margin-bottom: 20rem;
+}
+
+.card {
+    width: fit-content !important;
+    height: fit-content !important;
+}
+
+.pokemon-img {
+    margin-top: 22rem;
+}

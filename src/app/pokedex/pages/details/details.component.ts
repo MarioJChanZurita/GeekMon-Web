@@ -25,6 +25,7 @@ export class DetailsComponent implements OnInit {
       )
       .subscribe({
         next: (pokemon) => {
+          console.log(pokemon);
           this.pokemon = pokemon;
         },
         error: (error) => {

@@ -1,44 +1,50 @@
 <!-- INTRO -->
 <section class="intro">
   <p class="poke-text">JOIN THE POKEMON AND DIGIMON COMMUNITY</p>
-  <button routerLink="/home/sign-in">
+  <button routerLink="/auth/sign-in">
     <span class="poke-text">SIGN IN</span>
   </button>
 </section>
 
 <!-- CAROUSEL -->
-<div>
-  <h1>Featured Pokemons</h1>
-</div>
-<app-carousel #carousel [items]="pokemons" *ngIf="pokemons"></app-carousel>
-<button>See more pokemons</button>
+<section class="pokemon-carousel carousel">
+  <div>
+    <h1 class="subtitles">Featured Pokemons</h1>
+  </div>
+  <app-carousel #carousel [items]="pokemons" *ngIf="pokemons"></app-carousel>
+  <button class="see-more" routerLink="/pokedex">
+    <span class="text">See more pokemons</span>
+  </button>
+</section>
 
-<div>
-  <h1>Featured Digimons</h1>
-</div>
-<app-carousel #carousel [items]="digimons" *ngIf="digimons"></app-carousel>
+<section class="digimon-carousel carousel">
+  <div>
+    <h1 class="subtitles">Featured Digimons</h1>
+  </div>
+  <app-carousel #carousel [items]="digimons" *ngIf="digimons"></app-carousel>
+  <button enabled class="see-more" routerLink="/digivice">
+    <span class="text">See more digimons</span>
+  </button>
+</section>
 
-<section class="d-flex flex-row">
+<div class="tv-shows">
   <img
-    class="m-4"
+    class=""
     src="../../../../assets/main_shows.png"
     width="500"
     height="300"
   />
-  <div class="d-flex flex-row">
+  <div class="content">
     <p class="poke-text" style="color: darkviolet">
       FIND MORE MEDIA: TV SHOWS, MOVIES, ETC.
     </p>
-    <button>
-      <span class="fs-2" style="color: white">TV Shows</span>
+    <button routerLink="/tvShows">
+      <span class="text" style="font-size: 2rem">TV Shows</span>
     </button>
   </div>
-</section>
+</div>
 
 <!-- LOADING -->
-<!-- <div
-  *ngIf="isLoading; else carousel"
-  class="d-flex h-100 align-items-center justify-content-center"
->
+<div #loading class="d-flex h-100 align-items-center justify-content-center">
   <mat-spinner diameter="50"></mat-spinner>
-</div> -->
+</div>

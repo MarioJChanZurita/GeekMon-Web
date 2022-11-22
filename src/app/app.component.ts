@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.title = window.location.href.split('/').at(-1);
+    if (!this.title) this.title = window.location.href.split('/').at(-1);
     this.navigateToScreen(this.title);
   }
 

@@ -12,7 +12,7 @@ export class PokedexComponent implements OnInit {
   pokemons: any[] = [];
   isLoading: boolean = true;
   noPages: number = 0;
-  limitPerPage: number = 8;
+  limitPerPage: number = 10;
 
   nextPage: string = '';
   previousPage: string = '';
@@ -80,8 +80,7 @@ export class PokedexComponent implements OnInit {
   }
 
   changePage(pageUrl: string) {
-    this.nextPage = '';
-    this.previousPage = '';
+    this.pokemons = [];
     this.getPokemons(pageUrl);
   }
 }

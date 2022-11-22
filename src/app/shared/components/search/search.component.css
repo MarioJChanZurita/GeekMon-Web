@@ -1,0 +1,11 @@
+.input-container {
+    height: 20rem;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+}
+
+.search-container {
+    background-image: url('../../../../assets/search-background.png');
+    height: 40rem;
+    margin-bottom: 10rem;
+}

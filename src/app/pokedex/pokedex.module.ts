@@ -4,9 +4,11 @@ import { CommonModule } from '@angular/common';
 import { PokedexRoutingModule } from './pokedex-routing.module';
 import { PokedexComponent } from './pages/pokedex/pokedex.component';
 import { DetailsComponent } from './pages/details/details.component';
+import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
   declarations: [PokedexComponent, DetailsComponent],
-  imports: [CommonModule, PokedexRoutingModule],
+  imports: [CommonModule, PokedexRoutingModule, SharedModule, MaterialModule],
 })
 export class PokedexModule {}
