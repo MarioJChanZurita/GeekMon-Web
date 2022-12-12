@@ -2,22 +2,21 @@
 
 <div mat-dialog-content>
   <div class="mb-3">
-    <label for="subjectForm" class="form-label">Subject</label>
-    <input
-      type="email"
-      class="form-control"
-      id="subjectForm"
-      [(ngModel)]="data.subject"
-    />
-  </div>
-  <div class="mb-3">
-    <label for="msgForm" class="form-label">Message</label>
+    <label for="message" class="form-label">Message</label>
     <textarea
       class="form-control"
-      id="msgForm"
+      id="message"
       rows="3"
       placeholder="Message..."
     ></textarea>
+  </div>
+  <div
+    *ngIf="isSubmitted && formInput['message'].errors"
+    class="invalid-feedback"
+  >
+    <div *ngIf="formInput['message'].errors['required']">
+      Message is required
+    </div>
   </div>
 </div>
 

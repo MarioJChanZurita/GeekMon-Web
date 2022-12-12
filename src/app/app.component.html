@@ -5,10 +5,16 @@
     class="d-flex align-items-center gap-5"
     style="width: 100%"
   >
-    <a mat-icon-button (click)="sidenav.toggle()" role="button">
+    <a
+      mat-icon-button
+      class="menu"
+      (click)="sidenav.toggle()"
+      role="button"
+      *ngIf="isLogged"
+    >
       <mat-icon>menu</mat-icon>
     </a>
-    <h1>{{ title }}</h1>
+    <h1>{{ isLogged ? title : "Auth" }}</h1>
     <span class="spacer"></span>
     <img class="logo icon" src="assets/geekmon_icon.png" />
   </mat-toolbar>
@@ -24,23 +30,32 @@
     >
       <!-- SIDENAV MENU -->
       <mat-nav-list>
+        <div class="d-flex justify-content-center mt-5 mb-5">
+          <img src="../assets/user.png" alt="" width="150" height="auto" />
+        </div>
         <ng-container *ngFor="let screen of screens">
-          <div class="d-flex flex-row m-4">
-            <img
+          <a
+            mat-list-item
+            class="text-white d-flex flex-row m-4"
+            routerLink="{{ screen.route }}"
+            (click)="navigateToScreen(screen.display, sidenav)"
+            ><img
               src="../assets/{{ screen.icon }}"
               width="35"
               height="35"
               alt=""
-            />
-            <a
-              mat-list-item
-              class="text-white"
-              routerLink="{{ screen.route }}"
-              (click)="navigateToScreen(screen.display, sidenav)"
-              >{{ screen.display }}</a
-            >
-          </div>
+              class="m-3"
+            />{{ screen.display }}</a
+          >
         </ng-container>
+
+        <!-- Logout -->
+        <a
+          mat-list-item
+          class="logout-btn text-white d-flex flex-row m-4"
+          (click)="logout()"
+          ><span class="material-symbols-outlined m-3"> logout </span>Logout</a
+        >
       </mat-nav-list>
     </mat-sidenav>
 

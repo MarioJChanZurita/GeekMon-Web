@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,10 @@ import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './auth.guard';
+import { PermissionGuard } from './permission.guard';
+import { BaseInterceptor } from 'src/base.interceptor';
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,8 +36,17 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatToolbarModule,
     MatListModule,
     ToastrModule.forRoot(),
+    CookieModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseInterceptor,
+      multi: true,
+    },
+    PermissionGuard,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -7,7 +7,7 @@ export const environment = {
   pokemonApi: 'https://pokeapi.co/api/v2/',
   digimonApi: 'https://www.digi-api.com/api/v1/digimon',
   moviesApi: 'https://imdb-api.com/api',
-  geekMonApi: '', // project api
+  geekMonApi: 'http://localhost:8080', // project api
   cardApi: 'https://api.pokemontcg.io/v2/cards?q=name:gardevoir',
 };
 

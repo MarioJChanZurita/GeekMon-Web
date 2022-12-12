@@ -11,27 +11,23 @@ export class ForumService {
 
   constructor(private http: HttpClient) {}
 
-  // sendPost(message: string): Observable<any> {
-  //   return this.http.post<any>(`${this.geekMonApi}/sendPost}`, {});
-  // }
+  /* Message */
+  sendMessage(userId: string, message: string): Observable<any> {
+    return this.http.post<any>(`${this.geekMonApi}/message/`, {
+      content: message,
+      userId,
+    });
+  }
 
-  getPosts() {
-    return of([
-      {
-        message: 'Hello',
-        username: 'PokemonMaster',
-        subject: 'Greeting',
-      },
-      {
-        message: 'Hello',
-        username: 'PokemonMaster',
-        subject: 'Greeting',
-      },
-      {
-        message: 'Hello',
-        username: 'PokemonMaster',
-        subject: 'Greeting',
-      },
-    ]);
+  getMessages(): Observable<any> {
+    return this.http.get<any>(`${this.geekMonApi}/message/`);
+  }
+
+  editMessage(id: string, message: string): Observable<any> {
+    return this.http.put<any>(`${this.geekMonApi}/message/${id}`, { message });
+  }
+
+  deleteMessage(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.geekMonApi}/message/${id}`);
   }
 }

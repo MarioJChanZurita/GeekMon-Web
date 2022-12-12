@@ -10,6 +10,7 @@ import {
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
+import { AppService } from 'src/app.service';
 import { Md5 } from 'ts-md5';
 import { AuthService } from '../../services/auth.service';
 
@@ -31,7 +32,7 @@ export class SignInComponent implements OnInit {
   });
 
   constructor(
-    private authService: AuthService,
+    private appService: AppService,
     private formBuilder: FormBuilder,
     private router: Router,
     private toastr: ToastrService
@@ -45,7 +46,7 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
@@ -59,21 +60,23 @@ export class SignInComponent implements OnInit {
     if (this.form.invalid) return;
     this.isLoading = true;
     const md5 = new Md5();
-    this.hashedPassword = md5.appendStr(this.formInput['password'].value).end();
+    this.hashedPassword = md5
+      .appendStr(this.formInput['password'].value.trim())
+      .end();
 
-    this.authService
+    this.appService
       .authenticate(this.formInput['username'].value, this.hashedPassword)
       .pipe(
         catchError((err: HttpErrorResponse) => {
           this.onReset();
-          this.toastr.warning('Authentication failed', 'Error');
+          this.toastr.warning('Bad credentials', 'Error');
           return throwError(() => err);
         })
       )
       .subscribe({
         next: (res) => {
           this.isLoading = false;
-          this.authService.redirectToHome(); // intenta nuevamente -> AuthGuard
+          this.appService.redirectToHome(); // intenta nuevamente -> AuthGuard
         },
       });
   }

@@ -9,10 +9,12 @@ mat-sidenav-container {
 
 mat-nav-list {
     z-index: 5 !important;
+    height: 100%;
 }
 
 mat-sidenav {
     width: 25rem;
+    height: 100%;
 }
 
 .spacer {
@@ -22,4 +24,8 @@ mat-sidenav {
 mat-sidenav-content {
     background-image: url('../assets/background.png');
     background-repeat: repeat;
+}
+
+.menu {
+    color: white;
 }

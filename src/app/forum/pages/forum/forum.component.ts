@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { throwError } from 'rxjs';
+import { AppService } from 'src/app.service';
 import { ReplyModalComponent } from '../../components/reply-modal/reply-modal.component';
 import { ForumService } from '../../services/forum.service';
 
@@ -14,13 +16,17 @@ export class ForumComponent implements OnInit {
   subject!: string;
   message!: string;
 
-  posts: any[] = [];
+  messages: any[] = [];
 
   // Search
   quickSearch: string;
   searchField: FormControl;
 
-  constructor(public dialog: MatDialog, private forumService: ForumService) {
+  constructor(
+    public dialog: MatDialog,
+    private forumService: ForumService,
+    private appService: AppService
+  ) {
     this.quickSearch = '';
     this.searchField = new FormControl();
   }
@@ -30,27 +36,36 @@ export class ForumComponent implements OnInit {
   }
 
   getPosts() {
-    return this.forumService.getPosts().subscribe({
-      next: (posts) => (this.posts = posts),
+    return this.forumService.getMessages().subscribe({
+      next: (messages) => (this.messages = messages),
       error: (error) => {
         console.log(error);
       },
     });
   }
 
-  openDialog(): void {
+  sendMessage(): void {
     const dialogRef = this.dialog.open(ReplyModalComponent, {
       width: '50rem',
       data: {
         username: this.username,
-        subject: this.subject,
         message: this.message,
       },
     });
 
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log(result);
-      this.message = result;
+    dialogRef.afterClosed().subscribe({
+      next: (result) => {
+        console.log(result);
+        const userId = this.appService.getUserId();
+        console.log(userId);
+        this.forumService.sendMessage(userId, result).subscribe({
+          next: (res) => {
+            window.location.reload();
+          },
+          error: () => {},
+        });
+      },
+      error: (err) => throwError(() => err),
     });
   }
 }

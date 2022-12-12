@@ -25,6 +25,7 @@ export class SignUpComponent implements OnInit {
   public username: FormControl;
   public password: FormControl;
   public confirmPassword: FormControl;
+  public joinForum: FormControl;
 
   public hashedPassword: any;
   public isSubmitted: boolean;
@@ -34,6 +35,7 @@ export class SignUpComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl(''),
     confirmPassword: new FormControl(''),
+    joinForum: new FormControl(false),
   });
 
   constructor(
@@ -46,6 +48,7 @@ export class SignUpComponent implements OnInit {
     this.username = new FormControl();
     this.password = new FormControl();
     this.confirmPassword = new FormControl();
+    this.joinForum = new FormControl();
 
     this.isSubmitted = false;
     this.isLoading = false;
@@ -55,9 +58,10 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        username: ['', [Validators.required, Validators.email]],
+        username: ['', [Validators.required]],
         password: ['', [Validators.minLength(8), Validators.maxLength(20)]],
         confirmPassword: ['', [Validators.required]],
+        joinForum: [false],
       },
       {
         validators: [this.validatePassword('password', 'confirmPassword')],
@@ -90,7 +94,7 @@ export class SignUpComponent implements OnInit {
       .subscribe({
         next: () => {
           this.isLoading = false;
-          // this.router.navigate(['/auth/login']);
+          this.router.navigate(['/auth/sign-in']);
         },
       });
   }

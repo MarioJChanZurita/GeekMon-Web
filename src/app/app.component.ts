@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { AppService } from 'src/app.service';
+// import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +11,21 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title: string | undefined = 'Home';
+  isLogged: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(
+    // private location: Location,
+    private router: Router,
+    private appService: AppService
+  ) {}
 
   ngOnInit(): void {
     if (!this.title) this.title = window.location.href.split('/').at(-1);
     this.navigateToScreen(this.title);
+    this.isLogged = this.appService.isLogin();
+    // this.router.events.subscribe((event) => {
+    //   this.title = 'Home';
+    // });
   }
 
   screens = [
@@ -29,5 +40,9 @@ export class AppComponent implements OnInit {
   navigateToScreen(screenName?: string, sidenav?: MatSidenav) {
     if (sidenav) sidenav.toggle();
     this.title = screenName;
+  }
+
+  logout() {
+    this.appService.logout();
   }
 }
