@@ -55,10 +55,16 @@ export class SearchComponent implements OnInit {
       .subscribe((value) => this.onDebounce.emit(value));
   }
 
+  /**
+   * Monitorea evento de presionado de tecla
+   */
   keyPressed() {
     this.debounce.next(this.searchInput.value);
   }
 
+  /**
+   * Hace la busqueda
+   */
   searchBox() {
     this.onSubmit.emit(this.searchInput.value);
   }

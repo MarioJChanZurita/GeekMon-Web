@@ -2,27 +2,66 @@
   <span>
     <mat-icon>person</mat-icon>
   </span>
-  <h2 class="mx-2">Username</h2>
+  <h2 class="mx-2">{{ username }}</h2>
 </section>
 
 <div
   class="card mx-auto my-5 shadow-lg p-5 mb-5 bg-body rounded"
   style="width: 90%; height: 100rem"
 >
-  <ng-container *ngIf="messages.length; else noPosts">
+  <div class="d-flex justify-content-center w-100 fs-1 m-5">
+    <p class="title">GeekMon Forum</p>
+  </div>
+
+  <ng-container *ngIf="messages.length > 0; else noPosts">
     <div class="container inbox d-flex flex-column">
       <ng-container
-        *ngFor="let message of messages | search : quickSearch : ['subject']"
+        *ngFor="let message of messages | search : quickSearch : ['content']"
         class="container d-flex flex-row"
       >
         <div class="card-body">
-          <div class="message">
-            <div class="d-flex flex-row">
-              <mat-icon>person</mat-icon>
-              <h2>{{ message.username }}</h2>
-            </div>
-            <div>
-              <p>{{ message.message }}</p>
+          <div class="d-flex flex-row w-100 justify-content-around">
+            <div
+              class="message d-flex flex-column w-100"
+              [ngClass]="{
+                card: message.userId.username === username
+              }"
+            >
+              <div
+                class="d-flex flex-row card-title text-secondary m-2"
+                [ngClass]="{
+                  'start-0': !(message.userId.username === username),
+                  'end-0': message.userId.username === username
+                }"
+              >
+                <mat-icon>person</mat-icon>
+                <h3>
+                  {{ message.userId.username }}
+                </h3>
+              </div>
+              <div class="card-text p-3">
+                <h4>{{ message.content }}</h4>
+              </div>
+              <div
+                class="d-flex flex-row gap-2 m-3 position-absolute top-0 end-0"
+              >
+                <button
+                  *ngIf="message.userId.username === username"
+                  (click)="editMessage(message)"
+                  type="button"
+                  class="btn btn-light remove mt-3"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                  *ngIf="message.userId.username === username"
+                  (click)="removeMessage(message._id)"
+                  type="button"
+                  class="btn btn-light remove mt-3"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
             </div>
           </div>
         </div>

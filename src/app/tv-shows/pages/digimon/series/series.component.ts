@@ -43,6 +43,9 @@ export class SeriesComponent implements OnInit {
       });
   }
 
+  /**
+   * Obtiene todas las series de digimon de la digiApi
+   */
   getSeries() {
     this.isLoading = true;
     this.subscription && this.subscription.unsubscribe();

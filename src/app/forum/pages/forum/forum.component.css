@@ -5,3 +5,18 @@
 .card {
     height: 70%;
 }
+
+link {
+    color: black;
+    text-decoration: none;
+}
+
+.remove {
+    height: 3rem;
+    width: 6rem;
+}
+
+
+.title {
+    font-family: PokemonFont;
+}

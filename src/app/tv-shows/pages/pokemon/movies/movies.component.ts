@@ -18,6 +18,9 @@ export class MoviesComponent implements OnInit {
     this.getMovies();
   }
 
+  /**
+   * Obtiene todas las peliculas de pokemon de la pokeApi
+   */
   getMovies() {
     this.isLoading = true;
     this.subscription && this.subscription.unsubscribe();

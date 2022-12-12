@@ -40,6 +40,9 @@ export class PokedexComponent implements OnInit {
       });
   }
 
+  /**
+   * Obtiene todos los pokemons
+   */
   getPokemons(noPage: string) {
     this.subsPokemons && this.subsPokemons.unsubscribe();
     this.subsPokemons = this.sharedService.getPokemonsByUrl(noPage).subscribe({
@@ -58,6 +61,9 @@ export class PokedexComponent implements OnInit {
     });
   }
 
+  /**
+   * Obtiene los detalles de un pokemon en especifico
+   */
   getPokemonDetails(url: any) {
     this.sharedService.getPokemonsByUrl(url).subscribe({
       next: ({ id, name, sprites, types, abilities }) => {
@@ -79,6 +85,9 @@ export class PokedexComponent implements OnInit {
     });
   }
 
+  /**
+   * Cambia a la siguiente pagina (paginacion)
+   */
   changePage(pageUrl: string) {
     this.pokemons = [];
     this.getPokemons(pageUrl);

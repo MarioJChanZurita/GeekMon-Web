@@ -44,10 +44,24 @@ export class ReplyModalComponent implements OnInit {
     });
   }
 
-  onNoClick(): void {
-    this.dialogRef.close({ message: this.formInput['message'].value });
+  /**
+   * Sube el formulario de mensaje
+   */
+  onSubmit() {
+    this.isSubmitted = true;
+    this.dialogRef.close(this.formInput['message'].value);
   }
 
+  /**
+   * Cierra modal al darle click fuera de su area
+   */
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  /**
+   * Permite obtener un campo en especifico del form
+   */
   get formInput(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }

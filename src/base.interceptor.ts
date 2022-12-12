@@ -14,6 +14,9 @@ import { AppService } from './app.service';
 export class BaseInterceptor implements HttpInterceptor {
   constructor(private appCurrent: AppService, private router: Router) {}
 
+  /**
+   * Intercepta todas las peticiones http
+   */
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler

@@ -10,12 +10,18 @@ export class TvShowsService {
 
   constructor(private httpClient: HttpClient) {}
 
+  /**
+   * Obtiene todas las peliculas pokemon y digimon
+   */
   getMovies(subject: string) {
     return this.httpClient.get<any>(
       `${this.moviesApi}/searchmovie/k_4lwb2jzp/${subject}`
     );
   }
 
+  /**
+   * Obtiene todas las series de pokemon y digimon
+   */
   getSeries(subject: string) {
     return this.httpClient.get<any>(
       `${this.moviesApi}/searchseries/k_4lwb2jzp/${subject}`

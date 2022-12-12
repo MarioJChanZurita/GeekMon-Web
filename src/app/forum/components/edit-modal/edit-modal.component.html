@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Hi {{ data.username }}</h1>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <div class="mb-3">
+    <label for="message" class="form-label fw-semibold">Message</label>
+    <textarea
+      type="text"
+      class="form-control"
+      id="message"
+      required
+      formControlName="message"
+      name="message"
+      [ngClass]="{
+        'is-invalid': isSubmitted && formInput['message'].errors
+      }"
+    ></textarea>
+    <div
+      *ngIf="isSubmitted && formInput['message'].errors"
+      class="invalid-feedback"
+    >
+      <div *ngIf="formInput['message'].errors['required']">
+        Message is required
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions class="d-flex justify-content-evenly">
+    <button mat-button class="btn btn-danger fs-5" (click)="onNoClick()">
+      Cancel
+    </button>
+    <button
+      mat-button
+      type="submit"
+      class="btn btn-warning fs-5"
+      [mat-dialog-close]="data.message"
+      cdkFocusInitial
+    >
+      Update
+    </button>
+  </div>
+</form>

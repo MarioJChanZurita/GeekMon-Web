@@ -48,6 +48,9 @@ export class CarouselComponent implements OnInit {
     this.initializeSlider();
   }
 
+  /**
+   * Inicializa los datos para el funcionamiento del carousel
+   */
   initializeSlider() {
     this.totalPages = Math.ceil(this.totalCards / this.cardsPerPage);
     this.overflowWidth = `calc(${this.totalPages * 100}% + ${
@@ -60,15 +63,24 @@ export class CarouselComponent implements OnInit {
     console.log('total cards', this.totalCards);
   }
 
+  /**
+   * Obtiene numero de cartas por pagina
+   */
   getCardsPerPage() {
     return Math.floor(this.container.nativeElement.offsetWidth / 200);
   }
 
+  /**
+   * Cambia pagina a la siguiente
+   */
   changePage(incrementor: number) {
     this.currentPage += incrementor;
     this.populatePagePosition();
   }
 
+  /**
+   * Rellena posicion de pagina
+   */
   populatePagePosition() {
     this.pagePosition = `calc(${-100 * (this.currentPage - 1)}% - ${
       10 * (this.currentPage - 1)

@@ -11,22 +11,37 @@ export class ForumService {
 
   constructor(private http: HttpClient) {}
 
-  /* Message */
+  /**
+   * Envia mensaje en el foro
+   * @returns {Observable} Retorna observable con el mensaje enviado
+   */
   sendMessage(userId: string, message: string): Observable<any> {
-    return this.http.post<any>(`${this.geekMonApi}/message/`, {
-      content: message,
+    return this.http.post<any>(`${this.geekMonApi}/message`, {
       userId,
+      message,
     });
   }
 
+  /**
+   * Obtiene todos los mensajes del foro
+   * @returns {Observable} Retorna observable con todos los mensajes
+   */
   getMessages(): Observable<any> {
-    return this.http.get<any>(`${this.geekMonApi}/message/`);
+    return this.http.get<any>(`${this.geekMonApi}/message`);
   }
 
-  editMessage(id: string, message: string): Observable<any> {
-    return this.http.put<any>(`${this.geekMonApi}/message/${id}`, { message });
+  /**
+   * Editar mensaje previamente enviado
+   * @returns {Observable} Retorna mensaje actualizado
+   */
+  editMessage(id: string, content: string): Observable<any> {
+    return this.http.put<any>(`${this.geekMonApi}/message`, { id, content });
   }
 
+  /**
+   * Eliminar mensaje
+   * @returns {Observable} Retorna mensaje elininado
+   */
   deleteMessage(id: string): Observable<any> {
     return this.http.delete<any>(`${this.geekMonApi}/message/${id}`);
   }

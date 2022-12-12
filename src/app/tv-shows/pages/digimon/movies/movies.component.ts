@@ -19,6 +19,9 @@ export class MoviesComponent implements OnInit {
     this.getMovies();
   }
 
+  /**
+   * Obtiene todas las peliculas de digimon de la digiApi
+   */
   getMovies() {
     this.isLoading = true;
     this.subscription && this.subscription.unsubscribe();

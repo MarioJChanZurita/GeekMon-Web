@@ -48,6 +48,9 @@ export class DetailsComponent implements OnInit {
       });
   }
 
+  /**
+   * Genera QR para descargar pokemon
+   */
   generateQR() {
     const { sprites } = this.pokemon;
     this.pokedexService

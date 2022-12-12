@@ -73,6 +73,9 @@ export class SignUpComponent implements OnInit {
     return this.form.controls;
   }
 
+  /**
+   * Envia formulario de registro
+   */
   onSubmit(): void {
     this.isSubmitted = true;
     if (this.form.invalid) return;
@@ -99,11 +102,17 @@ export class SignUpComponent implements OnInit {
       });
   }
 
+  /**
+   * Limpia campos de formulario de registro
+   */
   onReset(): void {
     this.isSubmitted = false;
     this.form.reset();
   }
 
+  /**
+   * Valida que el password ingresado sea correcto
+   */
   validatePassword(controlName: string, checkControlName: string): ValidatorFn {
     return (controls: AbstractControl) => {
       const control = controls.get(controlName);

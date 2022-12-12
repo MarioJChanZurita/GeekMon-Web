@@ -6,26 +6,22 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
-  styleUrls: ['./cards.component.css']
+  styleUrls: ['./cards.component.css'],
 })
 export class CardsComponent implements OnInit {
-  pokemons : any[] = [];
-  constructor(private sharedService: SharedService,private http:HttpClient) {}
+  pokemons: any[] = [];
+  constructor(private sharedService: SharedService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getC().subscribe(resp => {
+    this.getC().subscribe((resp) => {
       this.pokemons.push(resp);
-      
-      
-    },)
+    });
   }
 
-  
-  getC(){
-    return this.http.get(this.sharedService.cardApi)
+  /**
+   * Obtiene las cartas de digimon
+   */
+  getC() {
+    return this.http.get(this.sharedService.cardApi);
   }
-
-
-
-
 }

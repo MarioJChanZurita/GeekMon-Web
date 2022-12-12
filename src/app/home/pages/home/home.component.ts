@@ -23,6 +23,9 @@ export class HomeComponent implements OnInit {
     this.getDigimons();
   }
 
+  /**
+   * Obtiene todos los pokemons para mostrarlos en el carousel
+   */
   getPokemons() {
     this.subsPokemons && this.subsPokemons.unsubscribe();
     this.isLoading = true;
@@ -53,6 +56,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+   * Obtiene todos los digimons para mostrarlos en el carousel
+   */
   getDigimons() {
     this.subsDigimons && this.subsDigimons.unsubscribe();
     this.isLoading = true;
@@ -84,6 +90,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+   * Desuscribe de los observables
+   */
   ngOnDestroy() {
     document.body.className = '';
     this.subsPokemons && this.subsPokemons.unsubscribe();

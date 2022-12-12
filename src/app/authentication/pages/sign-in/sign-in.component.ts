@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
 import { AppService } from 'src/app.service';
 import { Md5 } from 'ts-md5';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -55,6 +54,9 @@ export class SignInComponent implements OnInit {
     return this.form.controls;
   }
 
+  /**
+   * Envia formulario de login
+   */
   onSubmit(): void {
     this.isSubmitted = true;
     if (this.form.invalid) return;
@@ -81,6 +83,9 @@ export class SignInComponent implements OnInit {
       });
   }
 
+  /**
+   * Limpia los campos de formulario de login
+   */
   onReset(): void {
     this.isSubmitted = false;
     this.form.reset();

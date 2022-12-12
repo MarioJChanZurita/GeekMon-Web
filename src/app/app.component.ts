@@ -37,11 +37,17 @@ export class AppComponent implements OnInit {
     { route: '/forum', display: 'Forum', icon: 'forum.png' },
   ];
 
+  /**
+   * Navegar hacia pagina
+   */
   navigateToScreen(screenName?: string, sidenav?: MatSidenav) {
     if (sidenav) sidenav.toggle();
     this.title = screenName;
   }
 
+  /**
+   * Desloguea al usuario
+   */
   logout() {
     this.appService.logout();
   }

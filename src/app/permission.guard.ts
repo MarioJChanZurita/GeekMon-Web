@@ -14,6 +14,10 @@ import { AppService } from 'src/app.service';
 export class PermissionGuard implements CanActivate {
   constructor(private appCurrent: AppService) {}
 
+  /**
+   * Verifica los permisos para ver si se puede acceder a un recurso en especifico
+   * @returns
+   */
   canActivate(route: ActivatedRouteSnapshot) {
     const actions: string[] = this.appCurrent.permissions;
     const codes: string[] = route.data['permissions'];

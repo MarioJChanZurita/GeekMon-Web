@@ -18,6 +18,9 @@ export class SeriesComponent implements OnInit {
     this.getSeries();
   }
 
+  /**
+   * Obtiene todas las series de pokemon de la pokeApi
+   */
   getSeries() {
     this.isLoading = true;
     this.subscription && this.subscription.unsubscribe();

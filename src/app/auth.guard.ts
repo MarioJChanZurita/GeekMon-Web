@@ -18,6 +18,9 @@ export class AuthGuard implements CanActivate {
     private authService: AuthService
   ) {}
 
+  /**
+   * Verifica si el usuario esta logueado
+   */
   canActivate() {
     if (!this.appCurrent.isLogin()) {
       this.appCurrent.clearCredential();
@@ -26,12 +29,4 @@ export class AuthGuard implements CanActivate {
     }
     return true;
   }
-
-  // isValidToken () {
-  //   return this.authService.isAuthorized()
-  //     .pipe(
-  //       map(() => true),
-  //       catchError((err: HttpErrorResponse) => of(false))
-  //     )
-  // }
 }
